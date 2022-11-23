@@ -36,12 +36,12 @@ class _MyHomePageState extends State<MyHomePage> {
   final double _maximum = 49;
 
   late KnobController _controller;
-  late double _knobValue;
+  late int _knobValue;
 
   void valueChangedListener(double value) {
     if (mounted) {
       setState(() {
-        _knobValue = value;
+        _knobValue = value.floor();
       });
     }
   }
@@ -49,9 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _knobValue = _minimum;
+    _knobValue = _minimum.floor();
     _controller = KnobController(
-      initial: _knobValue,
+      initial: _minimum,
       minimum: _minimum,
       maximum: _maximum,
       startAngle: -90,
@@ -95,10 +95,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: KnobStyle(
                   labelStyle: Theme.of(context).textTheme.bodyText1,
                   showLabels: false,
-                  tickOffset: 0,
-                  labelOffset: 00,
-                  minorTicksPerInterval: 0,
+                  tickOffset: 10,
+                  labelOffset: 0,
+                  minorTicksPerInterval: 20,
                   showMinorTickLabels: false,
+                  minorTickStyle: MinorTickStyle(
+                    color: Colors.black,
+                  ),
                   controlStyle: ControlStyle(
                     backgroundColor: Colors.transparent,
                     glowColor: Colors.transparent,

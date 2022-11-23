@@ -1,8 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:knob_widget/src/enums/elements_position.dart';
 import 'package:knob_widget/src/utils/major_tick_style.dart';
-import 'dart:math';
-
 import 'package:knob_widget/src/utils/minor_tick_style.dart';
 
 class KnobTickPainter extends CustomPainter {
@@ -70,10 +70,8 @@ class KnobTickPainter extends CustomPainter {
           : current >= _getLabel((i * minorTickAngle).toInt())
               ? minorTickStyle.highlightColor
               : minorTickStyle.color;
-      tickPaint.strokeWidth =
-          isMajor ? majorTickStyle.thickness : minorTickStyle.thickness;
-      final tickLength =
-          (isMajor ? majorTickStyle.length : minorTickStyle.length);
+      tickPaint.strokeWidth = isMajor ? majorTickStyle.thickness : minorTickStyle.thickness;
+      final tickLength = (isMajor ? majorTickStyle.length : minorTickStyle.length);
       canvas.drawLine(
         Offset(0.0, -tickOffset - radius),
         Offset(0.0, -tickOffset - radius - tickLength),
@@ -84,9 +82,7 @@ class KnobTickPainter extends CustomPainter {
     canvas.restore();
     //
     if (showLabels) {
-      double labelRadius = radius +
-          2 * majorTickStyle.length +
-          (labelPosition == ElementsPosition.inside ? -1 : 1) * labelOffset;
+      double labelRadius = radius + 2 * majorTickStyle.length + (labelPosition == ElementsPosition.inside ? -1 : 1) * labelOffset;
       canvas.translate(0, -labelRadius);
       canvas.rotate(startAngle * pi / 180 - pi / 2);
       //
@@ -94,7 +90,8 @@ class KnobTickPainter extends CustomPainter {
         bool isMajor = i % minorTickCount == 0;
         if (isMajor || showMinorTickLabels) {
           _textPainter.text = TextSpan(
-            text: _getLabel((i * minorTickAngle).toInt()).toStringAsFixed(0),
+            // text: _getLabel((i * minorTickAngle).toInt()).toStringAsFixed(0),
+            text: '',
             style: labelStyle,
           );
           _textPainter.layout(
@@ -105,10 +102,8 @@ class KnobTickPainter extends CustomPainter {
           _textPainter.paint(
             canvas,
             Offset(
-              -_textPainter.width / 2 +
-                  labelRadius * sin(startAngle * pi / 180 - pi / 2),
-              -_textPainter.height / 2 +
-                  labelRadius * (1 - cos(startAngle * pi / 180 - pi / 2)),
+              -_textPainter.width / 2 + labelRadius * sin(startAngle * pi / 180 - pi / 2),
+              -_textPainter.height / 2 + labelRadius * (1 - cos(startAngle * pi / 180 - pi / 2)),
             ),
           );
           canvas.rotate(i * rotationAngle + startAngle * pi / 180 - pi / 2);
