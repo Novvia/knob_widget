@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:knob_widget/src/controller/knob_controller.dart';
 import 'package:knob_widget/src/utils/polar_coordinate.dart';
 import 'package:knob_widget/src/widgets/control_knob.dart';
-
 import 'package:knob_widget/src/widgets/radial_drag_gesture_detector.dart';
 import 'package:provider/provider.dart';
 
@@ -34,6 +33,7 @@ class _KnobGestureDetectorState extends State<KnobGestureDetector> {
       onRadialDragStart: _onRadialDragStart,
       onRadialDragUpdate: _onRadialDragUpdate,
       onRadialDragEnd: onRadialDragEnd,
+
       child: ControlKnob(
         controller.getAngleOfValue(controller.value.current) / 360,
       ),

@@ -32,8 +32,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final double _minimum = 0;
-  final double _maximum = 100;
+  final double _minimum = 15;
+  final double _maximum = 49;
 
   late KnobController _controller;
   late double _knobValue;
@@ -54,9 +54,9 @@ class _MyHomePageState extends State<MyHomePage> {
       initial: _knobValue,
       minimum: _minimum,
       maximum: _maximum,
-      startAngle: 0,
-      endAngle: 180,
-      precision: 2,
+      startAngle: -90,
+      endAngle: 260,
+      precision: 5,
     );
     _controller.addOnValueChangedListener(valueChangedListener);
   }
@@ -77,24 +77,39 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 25),
             ElevatedButton(
               onPressed: () {
-                var value =
-                    Random().nextDouble() * (_maximum - _minimum) + _minimum;
+                var value = Random().nextDouble() * (_maximum - _minimum) + _minimum;
                 _controller.setCurrentValue(value);
               },
               child: const Text('Update Knob Value'),
             ),
             const SizedBox(height: 75),
             Container(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.transparent,
+              ),
               child: Knob(
                 controller: _controller,
                 width: 200,
                 height: 200,
                 style: KnobStyle(
                   labelStyle: Theme.of(context).textTheme.bodyText1,
-                  tickOffset: 5,
-                  labelOffset: 10,
-                  minorTicksPerInterval: 10,
-                  showMinorTickLabels: true,
+                  showLabels: false,
+                  tickOffset: 0,
+                  labelOffset: 00,
+                  minorTicksPerInterval: 0,
+                  showMinorTickLabels: false,
+                  controlStyle: ControlStyle(
+                    backgroundColor: Colors.transparent,
+                    glowColor: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                  ),
+                  pointerStyle: const PointerStyle(
+                    offset: 10.0,
+                    height: 20,
+                    width: 5,
+                    color: Colors.blueGrey,
+                  ),
                 ),
               ),
             ),
