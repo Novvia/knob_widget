@@ -1,6 +1,6 @@
 name: knob_widget
 description: A knob widget for flutter
-version: 1.1.0
+version: 1.1.1
 homepage: https://github.com/alr2413/knob_widget
 
 environment:
