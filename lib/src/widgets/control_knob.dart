@@ -57,7 +57,7 @@ class ControlKnob extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(0.0),
                   child: Image.asset(
-                    'assets/dial2.png',
+                    'assets/dial.png',
                     fit: BoxFit.fill,
                     package: 'knob_widget',
                   ),
